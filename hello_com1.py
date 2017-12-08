@@ -2,7 +2,7 @@ import serial
 import hashlib
 from time import sleep
 
-port = 'COM1'
+port = '/tmp/COM1'
 ser = serial.Serial(port, 9600)
 start_frame = '<'
 end_frame = '>'
