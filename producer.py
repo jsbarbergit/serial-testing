@@ -1,9 +1,11 @@
-import serial
-import hashlib
+import hashlib 
 from time import sleep
+from socket import socket
 
-port = '/dev/ttyS0'
-ser = serial.Serial(port, 9600)
+sock = socket()
+sock.connect(('192.168.0.35', 54321))
+
+
 start_frame = '<'
 end_frame = '>'
 count =0
@@ -14,8 +16,11 @@ while True:
 	chksum = hashlib.md5(data).hexdigest()
 	#Build message frame including some extraneous data and 
 	message = "ignore_me" + start_frame + data +  chksum + end_frame + "and me"
-	x = ser.write(message)
-	count += 1
 	print "Sending message no: " + str(count)
+#        while message:
+#	    bytes = sock.send(message)
+#	    buffer = message[bytes:]
+	x = sock.send(message)
+	count += 1
 	sleep(1)
-ser.close()
+sock.close()
