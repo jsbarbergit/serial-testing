@@ -3,7 +3,7 @@ from time import sleep
 from socket import socket
 
 sock = socket()
-sock.connect(('192.168.0.35', 54321))
+sock.connect(('10.0.2.8', 54321))
 
 
 start_frame = '<'
